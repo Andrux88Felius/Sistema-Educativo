@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Educativo Bolivia</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        /* Login Form */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+        
+        .login-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-box h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Dashboard */
+        .dashboard {
+            display: none;
+            padding: 2rem 0;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        
+        .user-details h3 {
+            color: var(--primary);
+        }
+        
+        .user-details p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            background-color: var(--primary);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-item {
+            padding: 1rem;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background-color: var(--secondary);
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-header h3 {
+            color: var(--primary);
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* Forms */
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-col {
+            flex: 1;
+        }
+        
+        /* Alerts */
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .nav {
+                flex-direction: column;
+            }
+        }
+        
+        /* Role-specific colors */
+        .role-admin {
+            color: #e74c3c;
+        }
+        
+        .role-teacher {
+            color: #3498db;
+        }
+        
+        .role-student {
+            color: #2ecc71;
+        }
+        
+        .role-parent {
+            color: #9b59b6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">Sistema <span>Educativo</span></div>
+        </div>
+    </header>
+    
+    <div class="container login-container" id="loginScreen">
+        <div class="login-box">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="role">Rol</label>
+                    <select id="role" required>
+                        <option value="">Seleccione su rol</option>
+                        <option value="admin">Administrativo</option>
+                        <option value="teacher">Docente</option>
+                        <option value="student">Estudiante</option>
+                        <option value="parent">Padre de Familia</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn">Ingresar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Admin Dashboard -->
+    <div class="container dashboard" id="adminDashboard">
+        <div class="dashboard-header">
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <div class="user-details">
+                    <h3>Administrador Escolar</h3>
+                    <p class="role-admin">Rol: Administrativo</p>
+                </div>
+            </div>
+            <button class="btn btn-accent" id="logoutBtn">Cerrar Sesión</button>
+        </div>
+        
+        <div class="nav">
+            <a href="#" class="nav-item active" data-tab="admin-dashboard">Dashboard</a>
+            <a href="#" class="nav-item" data-tab="admin-students">Estudiantes</a>
+            <a href="#" class="nav-item" data-tab="admin-teachers">Docentes</a>
+            <a href="#" class="nav-item" data-tab="admin-reports">Reportes</a>
+            <a href="#" class="nav-item" data-tab="admin-settings">Configuración</a>
+        </div>
+        
+        <!-- Admin Dashboard Tab -->
+        <div class="tab-content" id="admin-dashboard">
+            <div class="card">
+                <h3>Resumen Institucional</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Estudiantes Registrados</h4>
+                            <p style="font-size: 2rem; text-align: center;">1,245</p>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Docentes</h4>
+                            <p style="font-size: 2rem; text-align: center;">58</p>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Cursos Activos</h4>
+                            <p style="font-size: 2rem; text-align: center;">36</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Actividades Recientes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Actividad</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10/05/2023</td>
+                            <td>Nueva matrícula registrada</td>
+                            <td>María Pérez</td>
+                        </tr>
+                        <tr>
+                            <td>09/05/2023</td>
+                            <td>Actualización de calificaciones</td>
+                            <td>Prof. Juan Gómez</td>
+                        </tr>
+                        <tr>
+                            <td>08/05/2023</td>
+                            <td>Reporte de asistencia generado</td>
+                            <td>Sistema Automático</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Admin Students Tab -->
+        <div class="tab-content" id="admin-students" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Gestión de Estudiantes</h3>
+                    <button class="btn">Nuevo Estudiante</button>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <input type="text" placeholder="Buscar estudiante...">
+                    </div>
+                    <div class="form-col">
+                        <select>
+                            <option>Filtrar por grado</option>
+                            <option>1ro Primaria</option>
+                            <option>2do Primaria</option>
+                            <!-- Más opciones -->
+                        </select>
+                    </div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre Completo</th>
+                            <th>Grado</th>
+                            <th>Edad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <td>Ana María López</td>
+                            <td>5to Primaria</td>
+                            <td>10</td>
+                            <td>
+                                <button class="btn" style="padding: 0.3rem 0.5rem; font-size: 0.8rem;">Editar</button>
+                                <button class="btn btn-accent" style="padding: 0.3rem 0.5rem; font-size: 0.8rem;">Ver</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>Carlos Fernández</td>
+                            <td>4to Primaria</td>
+                            <td>9</td>
+                            <td>
+                                <button class="btn" style="padding: 0.3rem 0.5rem; font-size: 0.8rem;">Editar</button>
+                                <button class="btn btn-accent" style="padding: 0.3rem 0.5rem; font-size: 0.8rem;">Ver</button>
+                            </td>
+                        </tr>
+                        <!-- Más estudiantes -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Admin Reports Tab -->
+        <div class="tab-content" id="admin-reports" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Generar Reportes</h3>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label>Tipo de Reporte</label>
+                        <select id="reportType">
+                            <option value="attendance">Asistencia</option>
+                            <option value="grades">Calificaciones</option>
+                            <option value="enrollment">Matrículas</option>
+                            <option value="behavior">Conducta</option>
+                        </select>
+                    </div>
+                    <div class="form-col">
+                        <label>Grado</label>
+                        <select id="reportGrade">
+                            <option value="all">Todos</option>
+                            <option value="1">1ro Primaria</option>
+                            <option value="2">2do Primaria</option>
+                            <!-- Más opciones -->
+                        </select>
+                    </div>
+                    <div class="form-col">
+                        <label>Período</label>
+                        <select id="reportPeriod">
+                            <option value="current">Actual</option>
+                            <option value="last-month">Mes pasado</option>
+                            <option value="semester">Semestre</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" id="generateReportBtn">Generar Reporte</button>
+                
+                <div id="reportResult" style="margin-top: 2rem; display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Reporte de <span id="reportTitle">Asistencia</span></h3>
+                            <button class="btn">Descargar PDF</button>
+                        </div>
+                        <div id="reportContent">
+                            <!-- Report content will be generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Teacher Dashboard -->
+    <div class="container dashboard" id="teacherDashboard">
+        <div class="dashboard-header">
+            <div class="user-info">
+                <div class="user-avatar">P</div>
+                <div class="user-details">
+                    <h3>Prof. Juan Gómez</h3>
+                    <p class="role-teacher">Rol: Docente | 5to Primaria</p>
+                </div>
+            </div>
+            <button class="btn btn-accent" id="logoutBtnTeacher">Cerrar Sesión</button>
+        </div>
+        
+        <div class="nav">
+            <a href="#" class="nav-item active" data-tab="teacher-dashboard">Dashboard</a>
+            <a href="#" class="nav-item" data-tab="teacher-students">Estudiantes</a>
+            <a href="#" class="nav-item" data-tab="teacher-grades">Calificaciones</a>
+            <a href="#" class="nav-item" data-tab="teacher-attendance">Asistencia</a>
+            <a href="#" class="nav-item" data-tab="teacher-messages">Comunicación</a>
+        </div>
+        
+        <!-- Teacher Dashboard Tab -->
+        <div class="tab-content" id="teacher-dashboard">
+            <div class="alert alert-info">
+                <strong>Recordatorio:</strong> Reunión de padres el viernes 12/05 a las 16:00
+            </div>
+            
+            <div class="card">
+                <h3>Mis Cursos</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Matemáticas</h4>
+                            <p>5to Primaria - 32 estudiantes</p>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Ciencias Naturales</h4>
+                            <p>5to Primaria - 32 estudiantes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Tareas Pendientes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tarea</th>
+                            <th>Curso</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>15/05/2023</td>
+                            <td>Ingresar calificaciones parciales</td>
+                            <td>Matemáticas</td>
+                            <td><span style="color: var(--warning);">Pendiente</span></td>
+                        </tr>
+                        <tr>
+                            <td>10/05/2023</td>
+                            <td>Enviar reportes conducta</td>
+                            <td>Ciencias</td>
+                            <td><span style="color: var(--success);">Completado</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Teacher Grades Tab -->
+        <div class="tab-content" id="teacher-grades" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Registro de Calificaciones</h3>
+                    <div>
+                        <select id="gradeCourse">
+                            <option>Matemáticas</option>
+                            <option>Ciencias Naturales</option>
+                        </select>
+                        <select id="gradePeriod">
+                            <option>1er Trimestre</option>
+                            <option>2do Trimestre</option>
+                            <option>3er Trimestre</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>1ra Evaluación</th>
+                            <th>2da Evaluación</th>
+                            <th>3ra Evaluación</th>
+                            <th>Promedio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ana López</td>
+                            <td><input type="number" min="0" max="100" value="85" style="width: 60px;"></td>
+                            <td><input type="number" min="0" max="100" value="78" style="width: 60px;"></td>
+                            <td><input type="number" min="0" max="100" value="92" style="width: 60px;"></td>
+                            <td>85</td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Fernández</td>
+                            <td><input type="number" min="0" max="100" value="72" style="width: 60px;"></td>
+                            <td><input type="number" min="0" max="100" value="68" style="width: 60px;"></td>
+                            <td><input type="number" min="0" max="100" value="75" style="width: 60px;"></td>
+                            <td>72</td>
+                        </tr>
+                        <!-- Más estudiantes -->
+                    </tbody>
+                </table>
+                
+                <button class="btn" style="margin-top: 1rem;">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Student Dashboard -->
+    <div class="container dashboard" id="studentDashboard">
+        <div class="dashboard-header">
+            <div class="user-info">
+                <div class="user-avatar">E</div>
+                <div class="user-details">
+                    <h3>Ana María López</h3>
+                    <p class="role-student">Rol: Estudiante | 5to Primaria</p>
+                </div>
+            </div>
+            <button class="btn btn-accent" id="logoutBtnStudent">Cerrar Sesión</button>
+        </div>
+        
+        <div class="nav">
+            <a href="#" class="nav-item active" data-tab="student-dashboard">Dashboard</a>
+            <a href="#" class="nav-item" data-tab="student-grades">Calificaciones</a>
+            <a href="#" class="nav-item" data-tab="student-schedule">Horario</a>
+            <a href="#" class="nav-item" data-tab="student-homework">Tareas</a>
+        </div>
+        
+        <!-- Student Dashboard Tab -->
+        <div class="tab-content" id="student-dashboard">
+            <div class="alert alert-info">
+                <strong>Próximo evento:</strong> Examen de Matemáticas el 15/05
+            </div>
+            
+            <div class="card">
+                <h3>Resumen Académico</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Promedio General</h4>
+                            <p style="font-size: 2rem; text-align: center;">85</p>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Asistencia</h4>
+                            <p style="font-size: 2rem; text-align: center;">95%</p>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Tareas Pendientes</h4>
+                            <p style="font-size: 2rem; text-align: center;">3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Anuncios Recientes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Anuncio</th>
+                            <th>De</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10/05/2023</td>
+                            <td>Recordatorio: Traer materiales para el proyecto de ciencias</td>
+                            <td>Prof. Gómez</td>
+                        </tr>
+                        <tr>
+                            <td>08/05/2023</td>
+                            <td>Cambio de aula para la clase de arte</td>
+                            <td>Administración</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Student Grades Tab -->
+        <div class="tab-content" id="student-grades" style="display: none;">
+            <div class="card">
+                <h3>Mis Calificaciones</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Materia</th>
+                            <th>1er Trim</th>
+                            <th>2do Trim</th>
+                            <th>3er Trim</th>
+                            <th>Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Matemáticas</td>
+                            <td>85</td>
+                            <td>78</td>
+                            <td>92</td>
+                            <td>85</td>
+                        </tr>
+                        <tr>
+                            <td>Ciencias Naturales</td>
+                            <td>90</td>
+                            <td>88</td>
+                            <td>85</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td>Lenguaje</td>
+                            <td>82</td>
+                            <td>85</td>
+                            <td>90</td>
+                            <td>86</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <h3>Reporte de Desempeño</h3>
+                <div style="height: 200px; background-color: #f9f9f9; display: flex; justify-content: center; align-items: center;">
+                    [Gráfico de desempeño por materia]
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Parent Dashboard -->
+    <div class="container dashboard" id="parentDashboard">
+        <div class="dashboard-header">
+            <div class="user-info">
+                <div class="user-avatar">P</div>
+                <div class="user-details">
+                    <h3>María Pérez</h3>
+                    <p class="role-parent">Rol: Padre/Madre de Familia</p>
+                </div>
+            </div>
+            <button class="btn btn-accent" id="logoutBtnParent">Cerrar Sesión</button>
+        </div>
+        
+        <div class="nav">
+            <a href="#" class="nav-item active" data-tab="parent-dashboard">Dashboard</a>
+            <a href="#" class="nav-item" data-tab="parent-children">Hijos</a>
+            <a href="#" class="nav-item" data-tab="parent-grades">Calificaciones</a>
+            <a href="#" class="nav-item" data-tab="parent-communication">Comunicación</a>
+        </div>
+        
+        <!-- Parent Dashboard Tab -->
+        <div class="tab-content" id="parent-dashboard">
+            <div class="alert alert-warning">
+                <strong>Notificación:</strong> Su hijo Carlos tiene 3 tareas pendientes
+            </div>
+            
+            <div class="card">
+                <h3>Mis Hijos</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Carlos Fernández</h4>
+                            <p>4to Primaria</p>
+                            <p>Promedio: 78</p>
+                            <p>Asistencia: 92%</p>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="card">
+                            <h4>Laura Fernández</h4>
+                            <p>2do Secundaria</p>
+                            <p>Promedio: 85</p>
+                            <p>Asistencia: 96%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Eventos Próximos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Evento</th>
+                            <th>Hijo</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12/05/2023</td>
+                            <td>Reunión de padres</td>
+                            <td>Carlos</td>
+                            <td><button class="btn" style="padding: 0.3rem 0.5rem;">Confirmar</button></td>
+                        </tr>
+                        <tr>
+                            <td>18/05/2023</td>
+                            <td>Entrega de proyectos</td>
+                            <td>Laura</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Parent Grades Tab -->
+        <div class="tab-content" id="parent-grades" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Calificaciones de <span id="selectedChild">Carlos Fernández</span></h3>
+                    <select id="selectChild">
+                        <option value="carlos">Carlos Fernández - 4to Primaria</option>
+                        <option value="laura">Laura Fernández - 2do Secundaria</option>
+                    </select>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Materia</th>
+                            <th>1er Trim</th>
+                            <th>2do Trim</th>
+                            <th>3er Trim</th>
+                            <th>Final</th>
+                        </tr>
+                    </thead>
+                    <tbody id="childGradesTable">
+                        <tr>
+                            <td>Matemáticas</td>
+                            <td>72</td>
+                            <td>68</td>
+                            <td>75</td>
+                            <td>72</td>
+                        </tr>
+                        <tr>
+                            <td>Ciencias Naturales</td>
+                            <td>80</td>
+                            <td>75</td>
+                            <td>78</td>
+                            <td>78</td>
+                        </tr>
+                        <tr>
+                            <td>Lenguaje</td>
+                            <td>85</td>
+                            <td>82</td>
+                            <td>80</td>
+                            <td>82</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simulated database
+        const users = {
+            admin: { password: 'admin123', name: 'Administrador Escolar', role: 'admin' },
+            teacher: { password: 'teacher123', name: 'Prof. Juan Gómez', role: 'teacher' },
+            student: { password: 'student123', name: 'Ana María López', role: 'student' },
+            parent: { password: 'parent123', name: 'María Pérez', role: 'parent' }
+        };
+        
+        // Login functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const role = document.getElementById('role').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if (!role || !username || !password) {
+                alert('Por favor complete todos los campos');
+                return;
+            }
+            
+            // Check credentials (in a real app, this would be a server call)
+            if (users[role] && password === users[role].password) {
+                // Hide login screen
+                document.getElementById('loginScreen').style.display = 'none';
+                
+                // Show appropriate dashboard
+                const dashboardId = `${role}Dashboard`;
+                document.getElementById(dashboardId).style.display = 'block';
+                
+                // Update user info if needed
+                if (role === 'teacher') {
+                    document.querySelector('#teacherDashboard .user-avatar').textContent = 
+                        users[role].name.split(' ')[1].charAt(0);
+                }
+            } else {
+                alert('Usuario o contraseña incorrectos');
+            }
+        });
+        
+        // Logout functionality
+        function setupLogout(buttonId, dashboardId) {
+            document.getElementById(buttonId).addEventListener('click', function() {
+                document.getElementById(dashboardId).style.display = 'none';
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('loginForm').reset();
+            });
+        }
+        
+        setupLogout('logoutBtn', 'adminDashboard');
+        setupLogout('logoutBtnTeacher', 'teacherDashboard');
+        setupLogout('logoutBtnStudent', 'studentDashboard');
+        setupLogout('logoutBtnParent', 'parentDashboard');
+        
+        // Tab navigation
+        function setupTabs(containerId) {
+            const tabs = document.querySelectorAll(`#${containerId} .nav-item`);
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all tab contents
+                    const tabContents = document.querySelectorAll(`#${containerId} .tab-content`);
+                    tabContents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    // Show selected tab content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).style.display = 'block';
+                });
+            });
+        }
+        
+        // Initialize tabs for each dashboard
+        setupTabs('adminDashboard');
+        setupTabs('teacherDashboard');
+        setupTabs('studentDashboard');
+        setupTabs('parentDashboard');
+        
+        // Report generation
+        document.getElementById('generateReportBtn').addEventListener('click', function() {
+            const reportType = document.getElementById('reportType').value;
+            const reportGrade = document.getElementById('reportGrade').value;
+            const reportPeriod = document.getElementById('reportPeriod').value;
+            
+            // Update report title
+            const reportTitle = document.getElementById('reportTitle');
+            reportTitle.textContent = {
+                'attendance': 'Asistencia',
+                'grades': 'Calificaciones',
+                'enrollment': 'Matrículas',
+                'behavior': 'Conducta'
+            }[reportType];
+            
+            // Generate report content
+            const reportContent = document.getElementById('reportContent');
+            reportContent.innerHTML = `
+                <h4>Parámetros del Reporte:</h4>
+                <ul>
+                    <li><strong>Tipo:</strong> ${reportTitle.textContent}</li>
+                    <li><strong>Grado:</strong> ${reportGrade === 'all' ? 'Todos' : 'Grado '+reportGrade}</li>
+                    <li><strong>Período:</strong> ${{
+                        'current': 'Actual',
+                        'last-month': 'Mes pasado',
+                        'semester': 'Semestre'
+                    }[reportPeriod]}</li>
+                </ul>
+                
+                <h4 style="margin-top: 1rem;">Resultados:</h4>
+                <div style="height: 300px; background-color: #f9f9f9; display: flex; justify-content: center; align-items: center;">
+                    [Datos del reporte generado para ${reportTitle.textContent}]
+                </div>
+                
+                <div style="margin-top: 1rem;">
+                    <p><strong>Resumen:</strong> Este reporte muestra la información solicitada con filtros aplicados.</p>
+                </div>
+            `;
+            
+            // Show report result
+            document.getElementById('reportResult').style.display = 'block';
+        });
+        
+        // Parent child selection
+        <!-- Continuación del código después de la sección de script existente -->
+
+        // Teacher - Attendance Management
+        document.querySelector('#teacher-attendance table')?.addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox') {
+                const row = e.target.closest('tr');
+                const studentName = row.cells[0].textContent;
+                const status = e.target.checked ? 'presente' : 'ausente';
+                console.log(`Asistencia actualizada: ${studentName} - ${status}`);
+                
+                // Show save button
+                const saveBtn = document.querySelector('#teacher-attendance .save-btn');
+                if (saveBtn) saveBtn.style.display = 'inline-block';
+            }
+        });
+
+        // Teacher - Send Message to Parents
+        document.getElementById('sendMessageBtn')?.addEventListener('click', function() {
+            const message = document.getElementById('teacherMessage').value;
+            const studentSelect = document.getElementById('messageStudent');
+            const student = studentSelect.options[studentSelect.selectedIndex].text;
+            
+            if (!message) {
+                alert('Por favor escriba un mensaje');
+                return;
+            }
+            
+            alert(`Mensaje enviado a los padres de ${student}:\n\n${message}`);
+            document.getElementById('teacherMessage').value = '';
+        });
+
+        // Student - Homework Details
+        document.querySelectorAll('.homework-details-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const homeworkId = this.getAttribute('data-homework');
+                alert(`Detalles de tarea #${homeworkId}:\n\nMatemáticas - Ejercicios páginas 45-50\nFecha entrega: 15/05/2023\nEstado: En progreso`);
+            });
+        });
+
+        // Parent - Communication with Teachers
+        document.getElementById('parentSendMessageBtn')?.addEventListener('click', function() {
+            const message = document.getElementById('parentMessage').value;
+            const teacherSelect = document.getElementById('parentMessageTeacher');
+            const teacher = teacherSelect.options[teacherSelect.selectedIndex].text;
+            const childSelect = document.getElementById('parentMessageChild');
+            const child = childSelect.options[childSelect.selectedIndex].text;
+            
+            if (!message) {
+                alert('Por favor escriba un mensaje');
+                return;
+            }
+            
+            alert(`Mensaje enviado al ${teacher} sobre ${child}:\n\n${message}`);
+            document.getElementById('parentMessage').value = '';
+        });
+
+        // Admin - Student Registration Form
+        document.getElementById('registerStudentForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentName = document.getElementById('studentName').value;
+            const studentGrade = document.getElementById('studentGrade').value;
+            
+            alert(`Estudiante ${studentName} registrado en ${studentGrade} exitosamente`);
+            this.reset();
+        });
+
+        // Initialize Teacher Attendance Tab
+        function initTeacherAttendance() {
+            const attendanceTab = document.getElementById('teacher-attendance');
+            if (!attendanceTab) return;
+            
+            attendanceTab.innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Registro de Asistencia</h3>
+                        <div>
+                            <select id="attendanceCourse">
+                                <option>Matemáticas</option>
+                                <option>Ciencias Naturales</option>
+                            </select>
+                            <input type="date" id="attendanceDate" value="${new Date().toISOString().split('T')[0]}">
+                        </div>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Estudiante</th>
+                                <th>Asistencia</th>
+                                <th>Observaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ana López</td>
+                                <td><input type="checkbox" checked></td>
+                                <td><input type="text" placeholder="Observaciones"></td>
+                            </tr>
+                            <tr>
+                                <td>Carlos Fernández</td>
+                                <td><input type="checkbox" checked></td>
+                                <td><input type="text" placeholder="Observaciones"></td>
+                            </tr>
+                            <tr>
+                                <td>Luisa Martínez</td>
+                                <td><input type="checkbox"></td>
+                                <td><input type="text" placeholder="Llegó tarde"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <button class="btn save-btn" style="display: none; margin-top: 1rem;">Guardar Asistencia</button>
+                </div>
+            `;
+        }
+
+        // Initialize Teacher Messages Tab
+        function initTeacherMessages() {
+            const messagesTab = document.getElementById('teacher-messages');
+            if (!messagesTab) return;
+            
+            messagesTab.innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Comunicación con Padres</h3>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Estudiante</label>
+                        <select id="messageStudent">
+                            <option>Ana López</option>
+                            <option>Carlos Fernández</option>
+                            <option>Luisa Martínez</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Mensaje</label>
+                        <textarea id="teacherMessage" rows="5" placeholder="Escriba su mensaje para los padres..."></textarea>
+                    </div>
+                    
+                    <button class="btn" id="sendMessageBtn">Enviar Mensaje</button>
+                    
+                    <h3 style="margin-top: 2rem;">Historial de Mensajes</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Estudiante</th>
+                                <th>Mensaje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>05/05/2023</td>
+                                <td>Carlos Fernández</td>
+                                <td>Carlos necesita mejorar en las tareas de matemáticas</td>
+                            </tr>
+                            <tr>
+                                <td>28/04/2023</td>
+                                <td>Ana López</td>
+                                <td>Ana ha mostrado excelente desempeño en ciencias</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // Initialize Parent Communication Tab
+        function initParentCommunication() {
+            const commTab = document.getElementById('parent-communication');
+            if (!commTab) return;
+            
+            commTab.innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Comunicación con Docentes</h3>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label>Hijo/a</label>
+                            <select id="parentMessageChild">
+                                <option>Carlos Fernández</option>
+                                <option>Laura Fernández</option>
+                            </select>
+                        </div>
+                        <div class="form-col">
+                            <label>Docente</label>
+                            <select id="parentMessageTeacher">
+                                <option>Prof. Juan Gómez (Matemáticas)</option>
+                                <option>Prof. Ana Martínez (Ciencias)</option>
+                                <option>Prof. Luis Rojas (Lenguaje)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Mensaje</label>
+                        <textarea id="parentMessage" rows="5" placeholder="Escriba su mensaje para el docente..."></textarea>
+                    </div>
+                    
+                    <button class="btn" id="parentSendMessageBtn">Enviar Mensaje</button>
+                    
+                    <h3 style="margin-top: 2rem;">Mensajes Recibidos</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>De</th>
+                                <th>Mensaje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>05/05/2023</td>
+                                <td>Prof. Juan Gómez</td>
+                                <td>Carlos necesita mejorar en las tareas de matemáticas</td>
+                            </tr>
+                            <tr>
+                                <td>02/05/2023</td>
+                                <td>Prof. Ana Martínez</td>
+                                <td>Recordatorio: Proyecto de ciencias para el 15/05</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // Initialize Student Homework Tab
+        function initStudentHomework() {
+            const homeworkTab = document.getElementById('student-homework');
+            if (!homeworkTab) return;
+            
+            homeworkTab.innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Tareas Pendientes</h3>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Materia</th>
+                                <th>Tarea</th>
+                                <th>Fecha Entrega</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Matemáticas</td>
+                                <td>Ejercicios páginas 45-50</td>
+                                <td>15/05/2023</td>
+                                <td><span style="color: var(--warning);">Pendiente</span></td>
+                                <td><button class="btn homework-details-btn" data-homework="1">Detalles</button></td>
+                            </tr>
+                            <tr>
+                                <td>Ciencias</td>
+                                <td>Proyecto: Sistema Solar</td>
+                                <td>18/05/2023</td>
+                                <td><span style="color: var(--success);">En progreso</span></td>
+                                <td><button class="btn homework-details-btn" data-homework="2">Detalles</button></td>
+                            </tr>
+                            <tr>
+                                <td>Lenguaje</td>
+                                <td>Ensayo sobre lectura</td>
+                                <td>12/05/2023</td>
+                                <td><span style="color: var(--accent);">Atrasado</span></td>
+                                <td><button class="btn homework-details-btn" data-homework="3">Detalles</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3 style="margin-top: 2rem;">Tareas Completadas</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Materia</th>
+                                <th>Tarea</th>
+                                <th>Fecha Entrega</th>
+                                <th>Calificación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Historia</td>
+                                <td>Linea de tiempo</td>
+                                <td>28/04/2023</td>
+                                <td>90/100</td>
+                            </tr>
+                            <tr>
+                                <td>Matemáticas</td>
+                                <td>Problemas algebraicos</td>
+                                <td>02/05/2023</td>
+                                <td>85/100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // Initialize Admin Settings Tab
+        function initAdminSettings() {
+            const settingsTab = document.getElementById('admin-settings');
+            if (!settingsTab) return;
+            
+            settingsTab.innerHTML = `
+                <div class="card">
+                    <h3>Configuración del Sistema</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="card">
+                                <h4>Nuevo Estudiante</h4>
+                                <form id="registerStudentForm">
+                                    <div class="form-group">
+                                        <label>Nombre Completo</label>
+                                        <input type="text" id="studentName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Grado</label>
+                                        <select id="studentGrade" required>
+                                            <option value="">Seleccione</option>
+                                            <option>1ro Primaria</option>
+                                            <option>2do Primaria</option>
+                                            <option>3ro Primaria</option>
+                                            <option>4to Primaria</option>
+                                            <option>5to Primaria</option>
+                                            <option>6to Primaria</option>
+                                            <option>1ro Secundaria</option>
+                                            <option>2do Secundaria</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Fecha de Nacimiento</label>
+                                        <input type="date" id="studentBirthdate" required>
+                                    </div>
+                                    <button type="submit" class="btn">Registrar Estudiante</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="card">
+                                <h4>Configuración de Notificaciones</h4>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" checked>
+                                        Notificar a padres sobre calificaciones
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" checked>
+                                        Notificar ausencias
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox">
+                                        Notificar tareas pendientes
+                                    </label>
+                                </div>
+                                <button class="btn" style="margin-top: 1rem;">Guardar Configuración</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-top: 1.5rem;">
+                        <h4>Integraciones</h4>
+                        <div class="form-group">
+                            <label>WhatsApp Business ID</label>
+                            <input type="text" placeholder="Ingrese el ID de WhatsApp Business">
+                        </div>
+                        <div class="form-group">
+                            <label>API Key para SMS</label>
+                            <input type="text" placeholder="Ingrese la clave API para SMS">
+                        </div>
+                        <button class="btn">Probar Conexión</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize all tabs when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            initTeacherAttendance();
+            initTeacherMessages();
+            initParentCommunication();
+            initStudentHomework();
+            initAdminSettings();
+        });
+    </script>
+</body>
+</html>
